@@ -1,10 +1,13 @@
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
+import Button from './Button.jsx'
 
 class Bar extends React.Component {
-  render () {
+  render() {
     // display something
     return (
-      <div>Bar "{this.props.type}"</div>
+      <div className={"bar bar-" + this.props.type}>
+        {this.props.views.map(v => <Button view={v} key={v.title}/>)}
+      </div>
     )
   }
 }

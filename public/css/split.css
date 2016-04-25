@@ -1,0 +1,19 @@
+.split-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.split-inner {
+  position: relative;
+}
+
+.split-inner.split-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.split-inner.split-horizontal {
+  display: flex;
+  flex-direction: row;
+}

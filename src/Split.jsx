@@ -1,10 +1,12 @@
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
 
 class Split extends React.Component {
-  render () {
+  render() {
     return (
-      <div>Split "{this.props.direction}"
-        {this.props.children}
+      <div className="split-outer">
+        <div className={"split-inner split-" + this.props.direction}>
+          {this.props.children}
+        </div>
       </div>
     )
   }
