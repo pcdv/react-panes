@@ -21,30 +21,38 @@ class Split extends React.Component {
     this.state = this.computeState(props)
   }
 
+  componentWillReceiveProps(props) {
+    this.setState(this.computeState(props))
+  }
+
   computeState(props) {
     // wrap component with state (size)
-    var children = React.Children.toArray(this.props.children)
+    var children = React.Children.toArray(props.children)
+      .filter(c => c !== null)
       .map(c => {
         return { component: c, size: "10%" }
       })
 
-    // make middle component main one
+    // make middle component main one. FIXME
     if (children.length > 1)
       delete children[1].size
+    else if (children.length === 1)
+      delete children[0].size
 
     // insert splitters
     for (var i = children.length - 1; i > 0; i--) {
-      children.splice(i, 0, <div className="split-handle"></div>)
+      children.splice(i, 0, <div className="split-handle" key={i}></div>)
     }
     return { children }
   }
 
   render() {
+    var i = 0
     return (
       <div className={"split-inner split-" + this.props.direction}>
         {this.state.children.map(c => {
           if (c.component)
-            return <SplitWrapper direction={this.props.direction} size={c.size}>{c.component}</SplitWrapper>
+            return <SplitWrapper key={"c"+i++} direction={this.props.direction} size={c.size}>{c.component}</SplitWrapper>
           else
             return c
         }) }

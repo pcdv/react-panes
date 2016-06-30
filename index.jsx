@@ -6,8 +6,8 @@ import Center from './src/Center.jsx'
 
 /*
 
-TODO: activate views (show or hide according to clicks on buttons)
 TODO: resize split panes
+TODO: DnD to move panes
 TODO: further split (top left etc.)
 */
 export class App extends React.Component {
@@ -31,6 +31,9 @@ export class App extends React.Component {
         </Pane>
         <Pane position="top" title="top2">
           top2 top2 top2 top2
+        </Pane>
+        <Pane position="bottom" title="bottom">
+          bot bot bot bot bot bot bot bot bot
         </Pane>
         <Center>
           CENTER CENTER CENTER

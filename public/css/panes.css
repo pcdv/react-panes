@@ -42,8 +42,14 @@
   display: inline-block;
   cursor: default;
 }
+.frame .bar-button.active {
+  background: #999;
+}
 .frame .bar-button:hover {
   background: #bbb;
+}
+.frame .bar-button.active:hover {
+  background: #888;
 }
 .frame .bar-left .bar-button {
   writing-mode: vertical-lr;

@@ -7,7 +7,7 @@ class BarButton extends React.Component {
       active: this.props.view.active
     })
     return (
-      <span className="bar-button">{this.props.view.title}</span>
+      <span className={cls} onClick={this.props.onClick}>{this.props.view.title}</span>
     )
   }
 }

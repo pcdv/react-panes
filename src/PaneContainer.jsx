@@ -6,10 +6,11 @@ import React, { PropTypes } from 'react'
  * with a splitter while hiding eventual inactive others from the same "side".
  */
 class PaneContainer extends React.Component {
-  render () {
-    var cls = "pane-container "+this.props.type
+  render() {
+    var cls = "pane-container " + this.props.type
     return (
-      <div className={cls}>PaneContainer
+      <div className={cls}>
+        {this.props.children}
       </div>
     )
   }

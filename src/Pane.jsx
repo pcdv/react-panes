@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 
 class Pane extends React.Component {
-  render () {
-
+  render() {
+    return <div>{this.props.children}</div>
   }
 }
 

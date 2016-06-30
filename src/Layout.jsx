@@ -4,6 +4,17 @@ import Center from './Center.jsx'
 import Pane from './Pane.jsx'
 import PaneContainer from './PaneContainer.jsx'
 import Frame from './Frame.jsx'
+import {getActiveView} from './util.js'
+
+function toggle(views, view) {
+  var active = !view.active
+  for (var i in views) {
+    var v = views[i]
+    if (v.position === view.position)
+      v.active = false
+  }
+  view.active = active
+}
 
 class Layout extends React.Component {
 
@@ -43,19 +54,36 @@ class Layout extends React.Component {
     return state
   }
 
+  onLayoutChange(e) {
+    switch (e.action) {
+      case 'TOGGLE':
+        toggle(this.state.views, e.view)
+        this.forceUpdate()
+        break
+    }
+  }
+
+  getPaneFor(type) {
+    var view = getActiveView(this.state.views, type)
+    if (view) {
+      return view.component
+    }
+    return null
+  }
+
   render() {
     const views = this.state.views
 
     return (
-      <Frame views={views}>
+      <Frame views={views} onChange={e => this.onLayoutChange(e) }>
         <Split direction="vertical">
-          <PaneContainer type="top" views={views}></PaneContainer>
+          {this.getPaneFor("top") }
           <Split direction="horizontal">
-            <PaneContainer type="left" views={views}></PaneContainer>
+            {this.getPaneFor("left") }
             <div className="center-pane">{views.center.component.props.children}</div>
-            <PaneContainer type="right" views={views}></PaneContainer>
+            {this.getPaneFor("right") }
           </Split>
-          <PaneContainer type="bottom" views={views}></PaneContainer>
+          {this.getPaneFor("bottom") }
         </Split>
       </Frame>
     )

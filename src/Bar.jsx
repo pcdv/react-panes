@@ -1,12 +1,16 @@
 import React, {PropTypes} from 'react'
-import Button from './BarButton.jsx'
+import BarButton from './BarButton.jsx'
 
 class Bar extends React.Component {
   render() {
-    // display something
     return (
       <div className={"bar bar-" + this.props.type}>
-        {this.props.views.map(v => <Button view={v} key={v.title}/>)}
+        {this.props.views.map(v => <BarButton view={v} key={v.title} onClick={e => {
+          this.props.onChange({
+            action: 'TOGGLE',
+            view: v
+          })
+        } }/>) }
       </div>
     )
   }

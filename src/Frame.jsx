@@ -1,29 +1,21 @@
 import React, {PropTypes} from 'react'
 import Bar from './Bar.jsx'
-
+import {filterViews} from './util.js'
 
 class Frame extends React.Component {
 
-  filterViews(type) {
-    const res = []
-    for (var title in this.props.views) {
-      const v = this.props.views[title]
-      if (v.position.startsWith(type))
-        res.push(v)
-    }
-    return res
-  }
-
   render() {
+    var props = { onChange: this.props.onChange }
+    var views = this.props.views
     return (
       <div className="frame">
-        <Bar type="top" views={this.filterViews("top")}/>
+        <Bar type="top" views={filterViews(views, "top") } {...props}/>
         <div className="middle">
-          <Bar type="left" views={this.filterViews("left")}/>
+          <Bar type="left" views={filterViews(views, "left") } {...props}/>
           <div className="frame-contents">{this.props.children}</div>
-          <Bar type="right" views={this.filterViews("right")}/>
+          <Bar type="right" views={filterViews(views, "right") } {...props}/>
         </div>
-        <Bar type="bottom" views={this.filterViews("bottom")}/>
+        <Bar type="bottom" views={filterViews(views, "bottom") } {...props}/>
       </div>
     )
   }
