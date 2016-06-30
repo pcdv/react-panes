@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import Button from './Button.jsx'
+import Button from './BarButton.jsx'
 
 class Bar extends React.Component {
   render() {

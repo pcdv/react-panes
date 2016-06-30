@@ -1,11 +1,8 @@
-.split-outer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
 
 .split-inner {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .split-inner.split-vertical {
@@ -16,4 +13,17 @@
 .split-inner.split-horizontal {
   display: flex;
   flex-direction: row;
+}
+
+.split-handle {
+   background: #888;
+   cursor: row-resize;
+ }
+.split-inner.split-horizontal > .split-handle {
+  width: 2px;
+   cursor: col-resize;
+}
+.split-inner.split-vertical > .split-handle {
+  height: 2px;
+   cursor: row-resize;
 }

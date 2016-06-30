@@ -1,7 +1,7 @@
 {
   "name": "react-panes",
   "version": "0.0.1",
-  "description": "React component that renders panes like in IntelliJ ",
+  "description": "React docking component inspired by IntelliJ (WIP)",
   "main": "''",
   "scripts": {
     "build": "webpack --progress --profile --colors",

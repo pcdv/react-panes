@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-class Button extends React.Component {
+class BarButton extends React.Component {
   render () {
     const cls = classNames('bar-button', {
       active: this.props.view.active
@@ -12,4 +12,4 @@ class Button extends React.Component {
   }
 }
 
-export default Button;
+export default BarButton;

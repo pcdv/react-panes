@@ -35,9 +35,9 @@ class Layout extends React.Component {
         state.views[c.props.title] = Object.assign({
           position: c.props.position
         }, prev, {
-          component: c,
-          title: c.props.title
-        })
+            component: c,
+            title: c.props.title
+          })
       }
     })
     return state
@@ -52,7 +52,7 @@ class Layout extends React.Component {
           <PaneContainer type="top" views={views}></PaneContainer>
           <Split direction="horizontal">
             <PaneContainer type="left" views={views}></PaneContainer>
-            {views.center.component.props.children}
+            <div className="center-pane">{views.center.component.props.children}</div>
             <PaneContainer type="right" views={views}></PaneContainer>
           </Split>
           <PaneContainer type="bottom" views={views}></PaneContainer>

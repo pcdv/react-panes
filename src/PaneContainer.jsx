@@ -7,8 +7,9 @@ import React, { PropTypes } from 'react'
  */
 class PaneContainer extends React.Component {
   render () {
+    var cls = "pane-container "+this.props.type
     return (
-      <div>PaneContainer
+      <div className={cls}>PaneContainer
       </div>
     )
   }

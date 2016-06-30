@@ -4,6 +4,12 @@ import Layout from './src/Layout.jsx'
 import Pane from './src/Pane.jsx'
 import Center from './src/Center.jsx'
 
+/*
+
+TODO: activate views (show or hide according to clicks on buttons)
+TODO: resize split panes
+TODO: further split (top left etc.)
+*/
 export class App extends React.Component {
   render() {
     return (
