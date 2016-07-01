@@ -14,6 +14,15 @@ class SplitWrapper extends React.Component {
   }
 }
 
+/**
+ * Wraps the child that must take all the available space.
+ */
+export class Fill extends React.Component {
+  render() {
+    return <div style={{ flex: "1 0 auto"}}>{this.props.children}</div>
+  }
+}
+
 class Split extends React.Component {
 
   constructor(props) {
@@ -28,19 +37,19 @@ class Split extends React.Component {
   computeState(props) {
     // wrap component with state (size)
     var children = React.Children.toArray(props.children)
-      .filter(c => c !== null)
+    var key = 0
+    children = children
+      .filter(c => c)
       .map(c => {
-        return { component: c, size: "10%" }
+        // hack because bug in chrome when nesting in <div> lose 100% height
+        if (c.type === Fill)
+          return React.Children.toArray(c.props.children)[0]
+        else
+          return <SplitWrapper key={"sw" + key++} direction={props.direction} size={"10%"}>{c}</SplitWrapper>
       })
 
-    // make middle component main one. FIXME
-    if (children.length > 1)
-      delete children[1].size
-    else if (children.length === 1)
-      delete children[0].size
-
     // insert splitters
-    for (var i = children.length - 1; i > 0; i--) {
+    for (var i = children.length - 1; i > 0; i--) { 
       children.splice(i, 0, <div className="split-handle" key={i}></div>)
     }
     return { children }
@@ -50,12 +59,7 @@ class Split extends React.Component {
     var i = 0
     return (
       <div className={"split-inner split-" + this.props.direction}>
-        {this.state.children.map(c => {
-          if (c.component)
-            return <SplitWrapper key={"c"+i++} direction={this.props.direction} size={c.size}>{c.component}</SplitWrapper>
-          else
-            return c
-        }) }
+        {this.state.children}
       </div>
     )
   }

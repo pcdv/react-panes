@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import Split from './Split.jsx'
+import Split, {Fill} from './Split.jsx'
 import Center from './Center.jsx'
 import Pane from './Pane.jsx'
 import PaneContainer from './PaneContainer.jsx'
@@ -65,10 +65,7 @@ class Layout extends React.Component {
 
   getPaneFor(type) {
     var view = getActiveView(this.state.views, type)
-    if (view) {
-      return view.component
-    }
-    return null
+    return view ? view.component : null
   }
 
   render() {
@@ -78,11 +75,13 @@ class Layout extends React.Component {
       <Frame views={views} onChange={e => this.onLayoutChange(e) }>
         <Split direction="vertical">
           {this.getPaneFor("top") }
-          <Split direction="horizontal">
-            {this.getPaneFor("left") }
-            <div className="center-pane">{views.center.component.props.children}</div>
-            {this.getPaneFor("right") }
-          </Split>
+          <Fill>
+            <Split direction="horizontal">
+              {this.getPaneFor("left") }
+              <Fill><div className="center-pane">{views.center.component.props.children}</div></Fill>
+              {this.getPaneFor("right") }
+            </Split>
+          </Fill>
           {this.getPaneFor("bottom") }
         </Split>
       </Frame>
