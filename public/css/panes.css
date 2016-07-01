@@ -41,6 +41,9 @@
 .frame .bar-button {
   display: inline-block;
   cursor: default;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
 }
 .frame .bar-button.active {
   background: #999;
